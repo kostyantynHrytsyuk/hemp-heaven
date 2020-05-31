@@ -37,6 +37,13 @@ CREATE TABLE products(
 	FOREIGN KEY(agronom_id) REFERENCES agronomists(id)
 );
 
+CREATE TABLE product_items(
+	product_id integer NOT NULL,
+	hemp_id integer  not null,
+	FOREIGN KEY(hemp_id) REFERENCES hemp_sort(id),
+	FOREIGN KEY(product_id) REFERENCES products(id)
+);
+
 CREATE TABLE orders(
 	id serial NOT NULL unique,
 	customer_id integer  not null,

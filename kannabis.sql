@@ -19,10 +19,16 @@ CREATE TABLE customers(
 	PRIMARY KEY (id)
 );
 
+CREATE TABLE hemp_sort(
+	id serial NOT NULL unique,
+	PRIMARY KEY (id),
+	sort_name VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE complaints(
 	id serial NOT NULL unique,
 	customer_id integer  not null,
-	text_complaints VARCHAR(255) NOT NULL,
+	text_complaints VARCHAR NOT NULL,
 	comp_date date not null,
 	PRIMARY KEY (id),
 	FOREIGN KEY(customer_id) REFERENCES customers(id)
@@ -83,13 +89,6 @@ CREATE TABLE returnss(
 	PRIMARY KEY (id)
 );
 create index post_date on returnss using brin (return_date);
-
-
-CREATE TABLE hemp_sort(
-	id serial NOT NULL unique,
-	PRIMARY KEY (id),
-	sort_name VARCHAR(255) NOT NULL
-);
 
 CREATE TABLE harvests(
 	id serial NOT NULL unique,

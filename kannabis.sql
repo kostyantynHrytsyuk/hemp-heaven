@@ -79,12 +79,10 @@ CREATE TABLE status(
 
 CREATE TABLE returnss(
 	id serial NOT NULL unique,
-	order_id integer  not null,
-	customer_id integer NOT NULL,
+	order_id integer not null UNIQUE,
 	status_id integer NOT NULL,
 	return_date date not null,
 	FOREIGN KEY(order_id) REFERENCES orders(id),
-	FOREIGN KEY(customer_id) REFERENCES customers(id),
 	FOREIGN KEY(status_id) REFERENCES status(id),
 	PRIMARY KEY (id)
 );

@@ -10,7 +10,7 @@ def create_engn(login, password, host, db):
     return engine
 
 
-# Дістає екземпляр Table з бази выдповыдно до назви таблички table
+# Дістає екземпляр Table з бази відповыдно до назви таблички table
 def get_table(engine, table):
     meta = MetaData(engine)
     table_obj = Table(table, meta, autoload=True)

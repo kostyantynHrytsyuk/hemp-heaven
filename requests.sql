@@ -27,21 +27,21 @@ and oai.amount >= 1 -- (N)
 ;
 
 -- 2)для споживача С знайти усi продукти, якi вiн придбав за вказаний перiод (з дати F по дату T);
-DROP VIEW IF EXISTS customers_order_info CASCADE;
+DROP VIEW IF EXISTS c_order_info CASCADE;
 
-CREATE VIEW customers_order_info AS
-SELECT DISTINCT ON (p.prod_name) p.prod_name AS p_name, c.id, p.agronom_id 
+CREATE VIEW c_order_info AS
+SELECT p.prod_name AS p_name, c.id, p.agronom_id 
 FROM customers AS c
 JOIN orders AS o ON o.customer_id = c.id
 JOIN order_items AS oi ON o.id = oi.order_id
 JOIN products AS p ON oi.product_id = p.id
-WHERE o.order_date > '2020-01-01' -- (F)
+WHERE o.order_date > '2019-01-01' -- (F)
 and o.order_date < '2020-11-01' -- (T)
 ;
 
-SELECT coi.p_name
-FROM customers_order_info AS coi
-WHERE coi.id = 1 -- (C.id)
+SELECT DISTINCT coi.p_name
+FROM c_order_info AS coi
+WHERE coi.id = 2 -- (C.id)
 ;
 
 -- 3) для споживача С знайти усiх агрономiв, якi проводили для нього дегустацiю хоча б N разiв
@@ -69,7 +69,7 @@ FROM c_tastings_info AS t
 GROUP BY  t.first_name, t.last_name, t.agronom_id, t.customer_id
 ;
 
-SELECT first_name || ' ' || last_name AS full_name
+SELECT DISTINCT first_name || ' ' || last_name AS full_name
 FROM c_tastings_amount_info AS t
 WHERE t.customer_id = 2 --(C.id) 
 and t.amount >= 3 --(N)
@@ -129,10 +129,10 @@ FROM c_tastings_info AS t
 GROUP BY  t.first_name, t.last_name, t.agronom_id, t.customer_id
 ;
 
-DROP VIEW IF EXISTS customers_order_info CASCADE;
+DROP VIEW IF EXISTS c_order_info CASCADE;
 
-CREATE VIEW customers_order_info AS
-SELECT DISTINCT ON (p.prod_name) p.prod_name AS p_name, c.id, p.agronom_id 
+CREATE VIEW c_order_info AS
+SELECT p.prod_name AS p_name, c.id, p.agronom_id 
 FROM customers AS c
 JOIN orders AS o ON o.customer_id = c.id
 JOIN order_items AS oi ON o.id = oi.order_id
@@ -145,7 +145,7 @@ DROP VIEW IF EXISTS sell_products CASCADE;
 
 CREATE VIEW sell_products AS
 SELECT coi.agronom_id AS agronom_id
-FROM customers_order_info AS coi
+FROM c_order_info AS coi
 JOIN agronomists AS a ON a.id = coi.agronom_id
 WHERE coi.id = 2 -- (C.id)
 ;
@@ -159,7 +159,7 @@ WHERE t.customer_id = 2 --(C.id)
 and t.amount >= 1 -- не змінювати, так має бути завжди ;) 
 ;
 
-SELECT hat.full_name
+SELECT DISTINCT hat.full_name
 FROM held_a_tasting AS hat
 JOIN sell_products AS sp ON hat.agronom_id = sp.agronom_id 
 ;
@@ -186,7 +186,7 @@ FROM customers_order_info AS coi
 GROUP BY coi.id
 ;
 
-SELECT c.first_name || ' ' || c.last_name AS full_name
+SELECT DISTINCT c.first_name || ' ' || c.last_name AS full_name
 FROM products_amount_info AS pai
 JOIN customers AS c ON pai.customer_id = c.id
 WHERE pai.amount >= 2 --(N)
@@ -212,7 +212,7 @@ FROM harvest_info AS h
 GROUP BY  h.first_name, h.last_name, h.agronom_id
 ;
 
-SELECT first_name || ' ' || last_name AS full_name
+SELECT DISTINCT first_name || ' ' || last_name AS full_name
 FROM hemp_sort_info AS h
 WHERE h.amount >= 3 --(N)
 ;
@@ -233,7 +233,7 @@ WHERE ts.tasting_date > '2019-01-01' -- (F)
 and ts.tasting_date < '2020-11-01' -- (T)
 ;
 
-SELECT ti.id
+SELECT DISTINCT ti.id
 FROM c_tastings_info AS ti
 WHERE ti.customer_id = 1 -- (C.id)
 and ti.agronom_id = 1 -- (A.id)
@@ -290,6 +290,23 @@ GROUP BY ac.c_month
 
 -- 11) вивести сорти коноплi у порядку спадання середньої кiлькостi вiдряджень, у якi їздили
 --агрономи, що збирали його урожай хоча б N разiв за вказаний перiод (з дати F по дату T);
+
+DROP VIEW IF EXISTS hemp_harvest_info CASCADE;
+
+CREATE VIEW hemp_harvest_info AS
+SELECT h.hemp_sort_id, h.agronom_id
+FROM agronomists AS a
+JOIN harvests AS h ON a.id = h.agronom_id
+WHERE  h.start_date > '2020-01-01' -- (F)
+and h.finish_date < '2020-11-01' -- (T)
+;
+DROP VIEW IF EXISTS harvest_amount_info CASCADE;
+
+CREATE VIEW harvest_amount_info AS
+SELECT hi.agronom_id, COUNT(hi.agronom_id) AS amount
+FROM hemp_harvest_info AS hi
+GROUP BY hi.agronom_id
+;
 
 
 

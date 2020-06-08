@@ -196,7 +196,7 @@ FROM c_tastings_info AS t
 GROUP BY  t.first_name, t.last_name, t.agronom_id, t.customer_id
 ;
 
-SELECT first_name || ' ' || last_name AS full_name
+SELECT DISTINCT first_name || ' ' || last_name AS full_name
 FROM c_tastings_amount_info AS t
 WHERE t.customer_id = ''' + customer_id + '''
 and t.amount >= ''' + amount_n + '''
@@ -260,10 +260,10 @@ FROM c_tastings_info AS t
 GROUP BY  t.first_name, t.last_name, t.agronom_id, t.customer_id
 ;
 
-DROP VIEW IF EXISTS customers_order_info CASCADE;
+DROP VIEW IF EXISTS c_order_info CASCADE;
 
-CREATE VIEW customers_order_info AS
-SELECT DISTINCT ON (p.prod_name) p.prod_name AS p_name, c.id, p.agronom_id 
+CREATE VIEW c_order_info AS
+SELECT p.prod_name AS p_name, c.id, p.agronom_id 
 FROM customers AS c
 JOIN orders AS o ON o.customer_id = c.id
 JOIN order_items AS oi ON o.id = oi.order_id
@@ -276,7 +276,7 @@ DROP VIEW IF EXISTS sell_products CASCADE;
 
 CREATE VIEW sell_products AS
 SELECT coi.agronom_id AS agronom_id
-FROM customers_order_info AS coi
+FROM c_order_info AS coi
 JOIN agronomists AS a ON a.id = coi.agronom_id
 WHERE coi.id = ''' + customer_id + '''
 ;
@@ -290,10 +290,11 @@ WHERE t.customer_id = ''' + customer_id + '''
 and t.amount >= 1 -- не змінювати, так має бути завжди ;) 
 ;
 
-SELECT hat.full_name
+SELECT DISTINCT hat.full_name
 FROM held_a_tasting AS hat
 JOIN sell_products AS sp ON hat.agronom_id = sp.agronom_id 
-;'''
+;
+'''
 
     return engine.execute(select)
 
@@ -437,10 +438,64 @@ GROUP BY ac.c_month
     return engine.execute(select)
 
 
-# Empty.
-def make_select11(engine):
+def make_select11(engine, amount_n, date_f, date_t):
     select = '''
-'''
+DROP VIEW IF EXISTS hemp_harvest_info CASCADE;
+
+CREATE VIEW hemp_harvest_info AS
+SELECT h.hemp_sort_id, h.agronom_id
+FROM agronomists AS a
+JOIN harvests AS h ON a.id = h.agronom_id
+WHERE  h.start_date > ''' + date_f + '''
+and h.finish_date < ''' + date_t + '''
+;
+DROP VIEW IF EXISTS harvest_amount_info CASCADE;
+
+CREATE VIEW harvest_amount_info AS
+SELECT hi.agronom_id, COUNT(hi.agronom_id) AS amount
+FROM hemp_harvest_info AS hi
+GROUP BY hi.agronom_id
+;
+
+DROP VIEW IF EXISTS hardworking_agronomists CASCADE;
+
+CREATE VIEW hardworking_agronomists AS
+SELECT hai.agronom_id
+FROM harvest_amount_info AS hai
+WHERE hai.amount >= ''' + amount_n + '''
+;
+
+DROP VIEW IF EXISTS business_trips_info CASCADE;
+
+CREATE VIEW business_trips_info AS
+SELECT ha.agronom_id, b_t.start_date
+FROM hardworking_agronomists AS ha
+LEFT JOIN bt_group_members AS bt_g_m ON ha.agronom_id = bt_g_m.agronom_id
+RIGHT JOIN business_trips_groups AS b_t_g ON b_t_g.id = bt_g_m.bt_group_id
+LEFT JOIN business_trips AS b_t ON b_t_g.id = b_t.bt_group_id
+WHERE b_t.start_date > ''' + date_f + '''
+and b_t.finish_date < ''' + date_t + '''
+;
+
+DROP VIEW IF EXISTS amount_of_business_trips CASCADE;
+
+CREATE VIEW amount_of_business_trips AS
+SELECT bti.agronom_id,  SUM (CASE WHEN bti.start_date IS NOT NULL THEN 1 ELSE 0 END) AS amount
+FROM business_trips_info AS bti
+GROUP BY bti.agronom_id;
+
+DROP VIEW IF EXISTS average_for_hemp CASCADE;
+
+CREATE VIEW average_for_hemp AS
+SELECT hi.hemp_sort_id, ROUND(AVG(aobt.amount), 2) AS average
+FROM hemp_harvest_info AS hi
+RIGHT JOIN amount_of_business_trips AS aobt ON hi.agronom_id = aobt.agronom_id 
+GROUP BY hi.hemp_sort_id;
+
+SELECT hs.sort_name
+FROM hemp_sort AS hs
+RIGHT JOIN average_for_hemp AS aoh ON aoh.hemp_sort_id = hs.id
+ORDER BY aoh.average DESC, hs.id;'''
 
     return engine.execute(select)
 

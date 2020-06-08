@@ -342,7 +342,7 @@ FROM return_info AS ri
 GROUP BY ri.id;
 
 
-SELECT pi.p_name, aor.amount, pi.id
+SELECT pi.p_name
 FROM product_info AS pi 
 LEFT JOIN amount_of_returns AS aor ON pi.id = aor.id
 ORDER BY aor.amount DESC, pi.id;

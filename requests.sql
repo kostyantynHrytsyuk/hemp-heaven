@@ -1,9 +1,9 @@
 -- 1) для агронома A знайти усiх споживачiв, яким вiн продавав продукт хоча б N разiв за
 --вказаний перiод (з дати F по дату T);
 
-DROP VIEW IF EXISTS orders_info CASCADE;
+DROP VIEW IF EXISTS c_and_a_orders_info CASCADE;
 
-CREATE VIEW orders_info AS
+CREATE VIEW c_and_a_orders_info AS
 SELECT c.first_name || ' ' || c.last_name AS customer_full_name, a.id 
 FROM orders AS o
 JOIN agronomists AS a ON a.id = o.agronom_id
@@ -16,7 +16,7 @@ DROP VIEW IF EXISTS orders_amount_info CASCADE;
 
 CREATE VIEW orders_amount_info AS
 SELECT oi.customer_full_name, oi.id, COUNT(oi.customer_full_name) AS amount
-FROM orders_info AS oi
+FROM c_and_a_orders_info AS oi
 GROUP BY oi.customer_full_name, oi.id
 ;
 
@@ -291,14 +291,14 @@ GROUP BY ac.c_month
 -- 11) вивести сорти коноплi у порядку спадання середньої кiлькостi вiдряджень, у якi їздили
 --агрономи, що збирали його урожай хоча б N разiв за вказаний перiод (з дати F по дату T);
 
---
+
 
 -- 12) вивести продукти, якi були придбанi щонайменше N рiзними споживачами у порядку спадання вiдсотку
 -- повернень за вказаний перiод (з дати F по дату T);
 
-DROP VIEW IF EXISTS order_return_info CASCADE;
+DROP VIEW IF EXISTS p_orders_info CASCADE;
 
-CREATE VIEW order_return_info AS
+CREATE VIEW p_orders_info AS
 SELECT p.prod_name AS p_name, o.customer_id, p.id
 FROM orders AS o
 JOIN order_items AS oi ON o.id = oi.order_id
@@ -310,9 +310,9 @@ and o.order_date < '2020-11-01' -- (T)
 DROP VIEW IF EXISTS amount_of_customers CASCADE;
 
 CREATE VIEW amount_of_customers AS
-SELECT ori.p_name, COUNT(ori.p_name) AS amount, ori.id
-FROM order_return_info AS ori
-GROUP BY ori.p_name, ori.id;
+SELECT poi.p_name, COUNT(poi.p_name) AS amount, poi.id
+FROM p_orders_info AS poi
+GROUP BY poi.p_name, poi.id;
 
 DROP VIEW IF EXISTS product_info CASCADE;
 
@@ -321,3 +321,29 @@ SELECT aoc.p_name, aoc.id
 FROM amount_of_customers AS aoc
 WHERE aoc.amount >= 3 -- (N)
 ;
+
+DROP VIEW IF EXISTS return_info CASCADE;
+
+CREATE VIEW return_info AS
+SELECT pi.id, r.return_date
+FROM product_info AS pi
+JOIN order_items AS oi ON oi.product_id = pi.id
+JOIN orders AS o ON oi.order_id = o.id
+LEFT JOIN returnss AS r ON r.order_id = o.id
+WHERE r.return_date > '2019-01-01' --(F)
+and r.return_date < '2020-11-01' --(T)
+;
+
+DROP VIEW IF EXISTS amount_of_returns CASCADE;
+
+CREATE VIEW amount_of_returns AS
+SELECT ri.id, SUM (CASE WHEN ri.return_date IS NOT NULL THEN 1 ELSE 0 END) AS amount 
+FROM return_info AS ri
+GROUP BY ri.id;
+
+
+SELECT pi.p_name, aor.amount, pi.id
+FROM product_info AS pi 
+LEFT JOIN amount_of_returns AS aor ON pi.id = aor.id
+ORDER BY aor.amount DESC, pi.id;
+

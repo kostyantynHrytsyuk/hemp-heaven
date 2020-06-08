@@ -308,6 +308,45 @@ FROM hemp_harvest_info AS hi
 GROUP BY hi.agronom_id
 ;
 
+DROP VIEW IF EXISTS hardworking_agronomists CASCADE;
+
+CREATE VIEW hardworking_agronomists AS
+SELECT hai.agronom_id
+FROM harvest_amount_info AS hai
+WHERE hai.amount >= 3 --(N)
+;
+
+DROP VIEW IF EXISTS business_trips_info CASCADE;
+
+CREATE VIEW business_trips_info AS
+SELECT ha.agronom_id, b_t.start_date
+FROM hardworking_agronomists AS ha
+LEFT JOIN bt_group_members AS bt_g_m ON ha.agronom_id = bt_g_m.agronom_id
+RIGHT JOIN business_trips_groups AS b_t_g ON b_t_g.id = bt_g_m.bt_group_id
+LEFT JOIN business_trips AS b_t ON b_t_g.id = b_t.bt_group_id
+WHERE b_t.start_date > '2020-01-01' -- (F)
+and b_t.finish_date < '2020-11-01' -- (T)
+;
+
+DROP VIEW IF EXISTS amount_of_business_trips CASCADE;
+
+CREATE VIEW amount_of_business_trips AS
+SELECT bti.agronom_id,  SUM (CASE WHEN bti.start_date IS NOT NULL THEN 1 ELSE 0 END) AS amount
+FROM business_trips_info AS bti
+GROUP BY bti.agronom_id;
+
+DROP VIEW IF EXISTS average_for_hemp CASCADE;
+
+CREATE VIEW average_for_hemp AS
+SELECT hi.hemp_sort_id, ROUND(AVG(aobt.amount), 2) AS average
+FROM hemp_harvest_info AS hi
+RIGHT JOIN amount_of_business_trips AS aobt ON hi.agronom_id = aobt.agronom_id 
+GROUP BY hi.hemp_sort_id;
+
+SELECT hs.sort_name
+FROM hemp_sort AS hs
+RIGHT JOIN average_for_hemp AS aoh ON aoh.hemp_sort_id = hs.id
+ORDER BY aoh.average DESC, hs.id;
 
 
 -- 12) вивести продукти, якi були придбанi щонайменше N рiзними споживачами у порядку спадання вiдсотку

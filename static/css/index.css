@@ -1,0 +1,90 @@
+.main-content {
+    background-color: #f8f8f8;
+    padding-bottom: 40px;
+}
+
+.side-nav {
+    border-right: 4px solid #8fdc7f;
+    overflow: auto;
+    padding: 0;
+}
+
+.row {
+    margin: 0;
+}
+
+.side-nav nav {
+    margin-top: 5px;
+}
+
+.side-nav-bookmark {
+    font-size: 2vh;
+    color: inherit;
+    font-family: 'Fjalla One', sans-serif;
+    margin: 0;
+}
+
+.nav-heading {
+    margin-top: 8px;
+    overflow: auto;
+    font-size: 2.4vw;
+    border-bottom: 2px solid #88a582;
+    color: #0e610e;
+    font-family: 'Fjalla One', sans-serif;
+    padding-left: 10px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.nav-heading:hover {
+    cursor: default;
+}
+
+.bookmark-block {
+    background-color: forestgreen;
+    border-style: outset;
+    border-width: 1px;
+    border-color: white;
+    margin: 0;
+    overflow: hidden;
+    height: 6vh;
+    color: white;
+    padding-top: 0.7vh;
+    padding-left: 1vw;
+}
+
+.bookmark-block:hover {
+    background-color: #00fa3f;
+    color: dimgray;
+    cursor: pointer;
+}
+
+.side-nav-bookmark:hover {
+    cursor: pointer;
+    text-decoration:none;
+    color: dimgray;
+}
+
+.article-heading {
+    border-bottom: 3px solid #88a582;
+}
+
+.paragraph {
+    font-size: 25px;
+    font-family: 'Manuale', serif;
+    background-color: #f3f0f0;
+    margin-bottom: 55px;
+    padding: 10px;
+}
+
+.subimg {
+    color: #636262;
+    font-size: 22px;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.link:hover {
+    color: green;
+    cursor: pointer;
+}

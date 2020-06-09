@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block metadata %}
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='/css/index.css') }}">
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='/css/query-forms.css') }}">
+{% endblock metadata %}
+
+
+
+{% block title %} about page {% endblock title %}
+
+
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-2 col-md-2 d-none d-md-block side-nav">
+        <p class="nav-heading">Results</p>
+    </div>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main-content">
+        <div>
+            <h1 style="font-size: 60px; margin-top: 30px">Welcome to <span style="color: darkgreen;">Hemp Haven!</span></h1>
+            <br />
+            <h3 style="font-size: 35px;">The best hemp market database for both agronomists and customers!</h3>
+        </div>
+
+        <div>
+            <h4>{{ data }}</h4>
+        </div>
+    </div>
+
+    <div class="col-lg-2 col-md-2 d-none d-md-block right-block">
+        <img src="../static/logo.png" width="100%" alt="HempLogo.png" style="margin-top: 20%;"><br /><br />
+        <a href="https://github.com/kostyantynHrytsyuk/hemp-heaven" class="side-link">Check out Hemp Haven on GitHub</a>
+    </div>
+
+</div>
+
+{% endblock content %}

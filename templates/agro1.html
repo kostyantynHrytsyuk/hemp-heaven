@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block metadata %}
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='/css/index.css') }}">
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='/css/query-forms.css') }}">
+{% endblock metadata %}
+
+
+
+{% block title %} Agronomist queries {% endblock title %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-2 col-md-2 d-none d-md-block side-nav">
+
+        <p class="nav-heading">Make a query!</p>
+
+    </div>
+
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main-content">
+        <div>
+            <h1 style="font-size: 60px; margin-top: 30px"><span style="color: darkgreen;">Agronomist</span> Queries</h1>
+            <br />
+            <h3 style="font-size: 35px; border-bottom: 3px solid #88a582;">Look up the necessary data using the forms below!</h3><br /><br />
+            <h6 style="font-size: 25px; color: #0e610e;">If you are experiencing some difficulties, check out the information on the <strong>About</strong> page.<br />It might  be helpful!</h6>
+
+            <h4 id="1st" class="query-heading">Get all customers of an agronomist that made a purchase at least <span style="color: dodgerblue;">N</span> times in a given time period </h4>
+
+             <form class="form-inline" action="/agronomist1" method="POST">
+                  <div class="form-group">
+                      {#<input type="text" class="form-control" id="times" placeholder="ID">#}
+                      {{ form1.aid(class_="form-control", placeholder="ID") }}
+                  </div>
+
+                  <div class="form-group">
+                      {#<input type="text" class="form-control" id="times" placeholder="N">#}
+                      {{ form1.n(class_="form-control", placeholder="N") }}
+                  </div>
+
+                  <div class="form-group">
+                      {#<input type="text" class="form-control" id="date1" placeholder="First date">#}
+                      {{ form1.fdate(class_="form-control", placeholder="First date") }}
+                  </div>
+
+                 <div class="form-group">
+                     {#<input type="text" class="form-control" id="date2" placeholder="Second date">#}
+                     {{ form1.sdate(class_="form-control", placeholder="Second date") }}
+                  </div>
+
+                  {#<button type="submit" class="btn btn-success">Submit Query</button>#}
+                 {{ form1.submit(class_="btn btn-success") }}
+            </form>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-2 col-md-2 d-none d-md-block right-block">
+        <img src="../static/logo.png" width="100%" alt="HempLogo.png" style="margin-top: 20%;"><br /><br />
+        <a href="https://github.com/kostyantynHrytsyuk/hemp-heaven" class="side-link">Check out Hemp Haven on GitHub</a>
+    </div>
+</div>
+
+{% endblock content %}

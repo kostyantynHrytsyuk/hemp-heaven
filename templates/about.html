@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+
+{% block metadata %}
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='/css/index.css') }}">
+{% endblock metadata %}
+
+
+
+{% block title %} about page {% endblock title %}
+
+
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-2 col-md-2 d-none d-md-block side-nav">
+
+        <p class="nav-heading">In-page navigation</p>
+
+        <nav>
+            <a class="side-nav-bookmark" href="#framework">
+                <div class="bookmark-block">
+                   ▶ What framework does th...?
+                </div>
+            </a>
+            <a class="side-nav-bookmark" href="#db">
+                <div class="bookmark-block">
+                    ▶ What database manageme...?
+                </div>
+            </a>
+            <a class="side-nav-bookmark" href="#er">
+                <div class="bookmark-block">
+                    ▶ ER Diagram
+                </div>
+            </a>
+        </nav>
+    </div>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main-content">
+        <div>
+            <h1 style="font-size: 60px; margin-top: 30px">Welcome to <span style="color: darkgreen;">Hemp Haven!</span></h1>
+            <br />
+            <h3 style="font-size: 35px;">The best hemp market database for both agronomists and customers!</h3>
+        </div>
+
+        <div style="margin-top: 100px;">
+            <h1 id="framework" class="article-heading">What framework does this website use?</h1>
+            <p class="paragraph">
+                <span style="color: #0e610e">Hemp Haven</span> uses Flask for handling all the necessary functions of this web application<br /><br />
+
+                <a href="https://en.wikipedia.org/wiki/Flask_(web_framework)" class="link"> Flask </a> is a micro web framework written in <a href="https://en.wikipedia.org/wiki/Python_(programming_language)" class="link"> Python</a>. It is classified as a microframework because it does not require particular tools or libraries.
+                It has no database abstraction layer, form validation, or any other components where pre-existing third-party libraries provide common functions.
+            </p>
+        </div>
+
+        <div style="margin-top: 100px;">
+            <h1 id="db" class="article-heading">What database management system does <span style="color: #0e610e">Hemp Haven</span> use?</h1>
+            <p class="paragraph">
+                <span style="color: #0e610e">Hemp Haven</span> uses PostgreSQL as a database management system.<br /><br />
+
+                <a href="https://en.wikipedia.org/wiki/PostgreSQL" class="link">PostgreSQL</a>, also known as Postgres, is a free and open-source relational database management system emphasizing extensibility and SQL compliance.
+                It was originally named POSTGRES, referring to its origins as a successor to the Ingres database developed at the University of California, Berkeley.
+            </p>
+        </div>
+
+        <div style="margin-top: 100px;">
+            <h1 id="er" class="article-heading">ER Diagram</h1>
+            <p class="paragraph">
+                Here you can view all the details of the structure and relations of the <span style="color: #0e610e">Hemp Haven</span> database.
+            </p>
+            <iframe src="../static/HempHavenDB.pdf" height="600px" width="100%"></iframe>
+            <br /><br /><br />
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

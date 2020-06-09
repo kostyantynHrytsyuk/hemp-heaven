@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='/css/layout.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manuale:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Collapsible sidebar using Bootstrap 4</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo.png') }}">
+
+    {% block metadata %}  {% endblock metadata %}
+
+    <title>{% block title %}  {% endblock title %}</title>
+
+</head>
+
+<body>
+<div class="root">
+    <div class="web-app-header" id="page-top">
+        <div class="blur"> <p> Hemp Haven </p> </div>
+
+    </div>
+
+
+    <div class="web-app-navbar">
+        <button class="signup" type="button" onclick="window.location.href='{{ url_for( 'home' ) }}';">Home</button>
+        <button class="signup" type="button" onclick="window.location.href='{{ url_for( 'agronomist_data' ) }}';">Agronomist data</button>
+        <button class="signup" type="button" onclick="window.location.href='{{ url_for( 'customer_data' ) }}';">Customer data</button>
+        <button class="signup" type="button" onclick="window.location.href='{{ url_for( 'crops_data' ) }}';">Harvests and Sorts</button>
+        <button class="signup" type="button" onclick="window.location.href='{{ url_for( 'about_page' ) }}';">About</button>
+    </div>
+
+
+    <div class="content">
+    {% block content %}
+
+    {% endblock content %}
+    </div>
+
+    <a href="#page-top" class="to-top">
+        <img src="../static/top-button.png" width="100%" height="100%">
+    </a>
+
+    <div class="web-app-footer">
+        <div id="footer-text">
+            © 2020 Copyright: Made by <a class="web-app-footer-link" href="https://github.com/kostyantynHrytsyuk/">Kostyantyn Hrytsyuk</a>,
+            <a class="web-app-footer-link" href="https://github.com/RomanBlahuta/">Roman Blahuta</a>,
+            <a class="web-app-footer-link" href="">Oksana Matskiv</a>,
+            <a class="web-app-footer-link" href="">Sofia Haletska</a> and
+            <a class="web-app-footer-link" href="">Volodymyr Lesyk</a>
+            <br />as a UCU 2nd year Database Course.
+        </div>
+    </div>
+
+    {#<div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+  </div>#}
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

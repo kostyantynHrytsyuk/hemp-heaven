@@ -1,0 +1,120 @@
+{% extends 'layout.html' %}
+
+{% block metadata %}
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='/css/index.css') }}">
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='/css/query-forms.css') }}">
+{% endblock metadata %}
+
+
+
+{% block title %} Agronomist queries {% endblock title %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-2 col-md-2 d-none d-md-block side-nav">
+
+        <p class="nav-heading">Query navigation</p>
+
+            <nav>
+                <a class="side-nav-bookmark" href="#1st">
+                    <div class="bookmark-block">
+                        ▶️ Get all customers of an...
+                    </div>
+                </a>
+
+                <a class="side-nav-bookmark" href="#2nd">
+                    <div class="bookmark-block">
+                        ▶️ Get all agronomists tha...
+                    </div>
+                </a>
+
+                <a class="side-nav-bookmark" href="#4th">
+                    <div class="bookmark-block">
+                        ▶️ Get all agronomists tha...
+                    </div>
+                </a>
+
+                <a class="side-nav-bookmark" href="#5th">
+                    <div class="bookmark-block">
+                        ▶️ Find all degustations for...
+                    </div>
+                </a>
+
+                <a class="side-nav-bookmark" href="#3rd">
+                    <div class="bookmark-block">
+                        ▶️ For the chosen agronomi...
+                    </div>
+                </a>
+
+                <a class="side-nav-bookmark" href="#6th">
+                    <div class="bookmark-block">
+                        ▶️ An agronomist organized...
+                    </div>
+                </a>
+
+
+                <a class="side-nav-bookmark" href="#6th">
+                    <div class="bookmark-block">
+                        ▶️ A group of agronomists...
+                    </div>
+                </a>
+            </nav>
+
+    </div>
+
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main-content">
+        <div>
+            <h1 style="font-size: 60px; margin-top: 30px"><span style="color: darkgreen;">Agronomist</span> Queries</h1>
+            <br />
+            <h3 style="font-size: 35px; border-bottom: 3px solid #88a582;">Look up the necessary data using the forms below!</h3><br /><br />
+            <h6 style="font-size: 25px; color: #0e610e;">If you are experiencing some difficulties, check out the information on the <strong>About</strong> page.<br />It might  be helpful!</h6>
+
+            <div class="div-line"></div>
+
+            <h4 id="1st" class="query-heading">Get all customers of an agronomist that made a purchase at least <span style="color: dodgerblue;">N</span> times in a given time period </h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'agronomist_data1' ) }}';">Go!</button>
+
+            <div class="div-line"></div>
+
+            <h4 id="2nd" class="query-heading">Get all agronomists that were in a work trip with the chosen agronomist in a given time period </h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'agronomist_data2' ) }}';">Go!</button><br />
+
+            <div class="div-line"></div>
+
+            <h4 id="4th" class="query-heading">Get all agronomists that gathered harvests of <span style="color: dodgerblue;">N</span> different kinds of hemp in a given time period </h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'agronomist_data3' ) }}';">Go!</button><br />
+
+            <div class="div-line"></div>
+
+            <h4 id="5th" class="query-heading">Find all degustations for a given agronomist and a given custiomer in a given period of time.</h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'agronomist_data4' ) }}';">Go!</button><br />
+
+            <div class="div-line"></div>
+
+            <h4 id="3rd" class="query-heading">For the chosen agronomist find all product degustations that he has organized for at least <span style="color: dodgerblue;">N</span> customers in a given time period </h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'agronomist_data5' ) }}';">Go!</button><br />
+
+            <div class="div-line"></div>
+
+            <h4 id="6th" class="query-heading">An agronomist organized a product tasting for a group of customers.</h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'agronomist_datae1' ) }}';">Go!</button><br />
+
+            <div class="div-line"></div>
+
+            <h4 id="7th" class="query-heading">A group of agronomists went on a working trip.</h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'agronomist_datae2' ) }}';">Go!</button><br />
+
+            <div class="div-line"></div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-2 col-md-2 d-none d-md-block right-block">
+        <img src="../static/logo.png" width="100%" alt="HempLogo.png" style="margin-top: 20%;"><br /><br />
+        <a href="https://github.com/kostyantynHrytsyuk/hemp-heaven" class="side-link">Check out Hemp Haven on GitHub</a>
+    </div>
+</div>
+
+{% endblock content %}

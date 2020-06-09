@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+
+{% block metadata %}
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='/css/index.css') }}">
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='/css/query-forms.css') }}">
+{% endblock metadata %}
+
+
+
+{% block title %} Harvest and Product queries {% endblock title %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-2 col-md-2 d-none d-md-block side-nav">
+
+        <p class="nav-heading">Query navigation</p>
+
+            <nav>
+                <a class="side-nav-bookmark" href="#1st">
+                    <div class="bookmark-block">
+                        ▶️ Get all customers of an...
+                    </div>
+                </a>
+
+                <a class="side-nav-bookmark" href="#2nd">
+                    <div class="bookmark-block">
+                        ▶️ Get all agronomists tha...
+                    </div>
+                </a>
+
+                <a class="side-nav-bookmark" href="#3rd">
+                    <div class="bookmark-block">
+                        ▶️ For the chosen agronomi...
+                    </div>
+                </a>
+
+                <a class="side-nav-bookmark" href="#1st">
+                    <div class="bookmark-block">
+                        ▶️ ...
+                    </div>
+                </a>
+            </nav>
+
+    </div>
+
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main-content">
+        <div>
+            <h1 style="font-size: 60px; margin-top: 30px"><span style="color: darkgreen;">Harvest and Product</span> Queries</h1>
+            <br />
+            <h3 style="font-size: 35px; border-bottom: 3px solid #88a582;">Look up the necessary data using the forms below!</h3><br /><br />
+            <h6 style="font-size: 25px; color: #0e610e;">If you are experiencing some difficulties, check out the information on the <strong>About</strong> page.<br />It might  be helpful!</h6>
+
+
+            <h4 id="1st" class="query-heading"></h4>
+            <form class="form-inline" action="/result">
+                  <div class="form-group">
+                        <input type="text" class="form-control" id="times" placeholder="Agr. ID">
+                  </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="times" placeholder="Cus. ID">
+                    </div>
+
+                  <div class="form-group">
+                        <input type="text" class="form-control" id="date1" placeholder="First date">
+                  </div>
+
+                 <div class="form-group">
+                        <input type="text" class="form-control" id="date2" placeholder="Second date">
+                  </div>
+
+                  <button type="submit" class="btn btn-success">Submit Query</button>
+            </form>
+
+
+            <div class="div-line"></div>
+
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-2 col-md-2 d-none d-md-block right-block">
+        <img src="../static/logo.png" width="100%" alt="HempLogo.png" style="margin-top: 20%;"><br /><br />
+        <a href="https://github.com/kostyantynHrytsyuk/hemp-heaven" class="side-link">Check out Hemp Haven on GitHub</a>
+    </div>
+</div>
+
+{% endblock content %}

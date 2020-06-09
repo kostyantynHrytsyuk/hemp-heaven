@@ -1,0 +1,49 @@
+.query-heading {
+    margin-top: 100px;
+    color: #0e610e;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+input#times {
+    width: 100px;
+}
+
+.right-block {
+    border-left: 4px solid #8fdc7f;
+    text-align: center;
+}
+
+.side-link {
+    color: #0e610e;
+    font-size: 15px;
+}
+
+.side-link:hover {
+    color: lawngreen;
+    cursor: pointer;
+}
+
+.div-line {
+    margin-top: 40px;
+    height: 2vh;
+    border-bottom: 3px solid dodgerblue;
+}
+
+.query-result {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.query-result-cell, .query-result-header {
+    border: 1px solid #262626;
+    padding: 8px;
+}
+
+.query-result-cell {
+    color: black;
+}
+
+.query-result tr:nth-child(even){background-color: #ffffff;}
+
+.query-result tr:hover {background-color: #eaeaea;}

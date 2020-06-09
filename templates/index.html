@@ -1,0 +1,114 @@
+{% extends 'layout.html' %}
+
+{% block metadata %}
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='/css/index.css') }}">
+{% endblock metadata %}
+
+
+
+{% block title %} Home page {% endblock title %}
+
+
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-2 col-md-2 d-none d-md-block side-nav">
+        <p class="nav-heading">In-page navigation</p>
+
+            <nav>
+                <a class="side-nav-bookmark" href="#db">
+                    <div class="bookmark-block">
+                        ▶ What data is available?
+                    </div>
+                </a>
+
+                <a class="side-nav-bookmark" href="#hemp">
+                    <div class="bookmark-block">
+                        ▶ Hemp
+                    </div>
+                </a>
+
+                <a class="side-nav-bookmark" href="#history">
+                    <div class="bookmark-block">
+                        ▶ History
+                    </div>
+                </a>
+            </nav>
+    </div>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main-content">
+        <div>
+            <h1 style="font-size: 60px; margin-top: 30px">Welcome to <span style="color: darkgreen;">Hemp Haven!</span></h1>
+            <br />
+            <h3 style="font-size: 35px;">The best hemp market database for both agronomists and customers!</h3>
+        </div>
+
+        <div style="margin-top: 100px;">
+            <h1 id="db" class="article-heading">What data is available?</h1>
+            <p class="paragraph">
+                In our database you can find the latest information about the hemp market.
+                If you are a customer, you can find all of the necessary information on agronomists
+                and the events they organize or participate in, such as product degustations or work trips. You can also create
+                queries to view feedback on the service people have received.<br /><br />
+
+                If you are an agronomist, you can also view all information on your fellow agronomists and the customers.
+                There is a lot of data present about all the products that is useful for both agronomists and their clients.<br /><br />
+
+                Go to the corresponding data query page and check it out yourself!<br />
+                If you get lost do not worry, we've included a diagram and some hints for this database, so you have some
+                idea what to look for and where exactly!<br />
+                All the helper information is on the <strong>About</strong> page.
+            </p>
+
+            <h1 id="hemp" class="article-heading">Hemp</h1>
+            <p class="paragraph">
+                <strong><span style="color: darkgreen;">Hemp</span></strong>, or industrial hemp, is a variety of the Cannabis sativa plant species that is grown specifically for the
+                industrial uses of its derived products. It is one of the fastest growing plants and was one of the first
+                plants to be spun into usable fiber 50,000 years ago. It can be refined into a variety of commercial items,
+                including paper, textiles, clothing, biodegradable plastics, paint, insulation, biofuel, food, and animal feed.<br /><br /><br />
+            </p>
+                <img src="../static/hemp_image.jpg" width="30%" style="margin-left: 35%; margin-top: 0; margin-bottom: 0;"><br />
+                <div class="subimg">A hemp field in Côtes-d'Armor, Brittany, France (Europe's largest hemp producer)</div><br /><br /><br />
+
+            <p class="paragraph">
+                Although cannabis as a drug and industrial hemp both derive from the species Cannabis sativa and contain the
+                psychoactive component <a class="link" href="https://en.wikipedia.org/wiki/Tetrahydrocannabinol">tetrahydrocannabinol (THC)</a>, they are distinct strains with unique phytochemical compositions
+                and uses. Hemp has lower concentrations of THC and higher concentrations of cannabidiol (CBD), which decreases or
+                eliminates its psychoactive effects. The legality of industrial hemp varies widely between countries. Some governments
+                regulate the concentration of THC and permit only hemp that is bred with an especially low THC content.
+            </p>
+
+            <h1 id="history" class="article-heading">History</h1>
+            <p class="paragraph">
+                Hemp is possibly one of the earliest plants to be cultivated. An archeological site in the Oki Islands near Japan contained
+                cannabis achenes from about 8000 BC, probably signifying use of the plant. Hemp use archaeologically dates back to the Neolithic
+                Age in China, with hemp fiber imprints found on Yangshao culture pottery dating from the 5th millennium BC. The Chinese later used
+                hemp to make clothes, shoes, ropes, and an early form of paper. The classical Greek historian Herodotus (ca. 480 BC) reported that
+                the inhabitants of Scythia would often inhale the vapors of hemp-seed smoke, both as ritual and for their own pleasurable recreation.<br /><br />
+
+                Textile expert Elizabeth Wayland Barber summarizes the historical evidence that Cannabis sativa, "grew and was known in the Neolithic
+                period all across the northern latitudes, from Europe (Germany, Switzerland, Austria, Romania, Ukraine) to East Asia (Tibet and China),"
+                but, "textile use of Cannabis sativa does not surface for certain in the West until relatively late, namely the Iron Age." "I strongly
+                suspect, however, that what catapulted hemp to sudden fame and fortune as a cultigen and caused it to spread rapidly westwards in the first
+                millennium B.C. was the spread of the habit of pot-smoking from somewhere in south-central Asia, where the drug-bearing variety of the plant
+                originally occurred. The linguistic evidence strongly supports this theory, both as to time and direction of spread and as to cause."<br /><br />
+
+                Jews living in Palestine in the 2nd century were familiar with the cultivation of hemp, as witnessed by a reference to it in the Mishna (Kil'ayim 2:5)
+                as a variety of plant, along with Arum, that sometimes takes as many as three years to grow from a seedling. In late medieval Germany and Italy, hemp
+                was employed in cooked dishes, as filling in pies and tortes, or boiled in a soup. Hemp in later Europe was mainly cultivated for its fibers and was
+                used for ropes on many ships, including those of Christopher Columbus. The use of hemp as a cloth was centered largely in the countryside, with higher
+                quality textiles being available in the towns.<br /><br />
+
+                The Spaniards brought hemp to the Americas and cultivated it in Chile starting about 1545. Similar attempts were made in Peru, Colombia, and Mexico,
+                but only in Chile did the crop find success. In July 1605, Samuel Champlain reported the use of grass and hemp clothing by the (Wampanoag) people
+                of Cape Cod and the (Nauset) people of Plymouth Bay told him they harvested hemp in their region where it grew wild to a height of 4 to 5 ft. In
+                May 1607, "hempe" was among the crops Gabriel Archer observed being cultivated by the natives at the main Powhatan village, where Richmond, Virginia is
+                now situated; and in 1613, Samuell Argall reported wild hemp "better than that in England" growing along the shores of the upper Potomac. As early as 1619,
+                the first Virginia House of Burgesses passed an Act requiring all planters in Virginia to sow "both English and Indian" hemp on their plantations. The Puritans
+                are first known to have cultivated hemp in New England in 1645.<br /><br />
+
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

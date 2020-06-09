@@ -6,7 +6,7 @@
 
 
 
-{% block title %} about page {% endblock title %}
+{% block title %} About Page {% endblock title %}
 
 
 
@@ -36,10 +36,19 @@
         </nav>
     </div>
     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main-content">
+
         <div>
             <h1 style="font-size: 60px; margin-top: 30px">Welcome to <span style="color: darkgreen;">Hemp Haven!</span></h1>
             <br />
             <h3 style="font-size: 35px;">The best hemp market database for both agronomists and customers!</h3>
+        </div>
+
+        <div class="alert alert-warning" role="alert">
+            Note: if you're performing a "SELECT" query (extracting data instead of posting new information) the correct format for date parameters is<br />'yyy-mm-dd'
+        </div>
+        <div class="alert alert-warning" role="alert">
+            Note: if you're performing a "INSERT" query (posting new information) the correct format for date parameters is yyy-mm-dd<br />
+            NO QUOTE MARKS!!!
         </div>
 
         <div style="margin-top: 100px;">

@@ -1,17 +1,132 @@
 {% extends 'layout.html' %}
 
 {% block metadata %}
-
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='/css/index.css') }}">
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='/css/query-forms.css') }}">
 {% endblock metadata %}
 
 
 
-{% block title %} about page {% endblock title %}
-
-
+{% block title %} Customer queries {% endblock title %}
 
 {% block content %}
 
-customer
+<div class="row">
+    <div class="col-lg-2 col-md-2 d-none d-md-block side-nav">
+
+        <p class="nav-heading">Query navigation</p>
+
+            <nav>
+                <a class="side-nav-bookmark" href="#1st">
+                    <div class="bookmark-block">
+                        ▶️ Find all purchased prod...
+                    </div>
+                </a>
+
+                <a class="side-nav-bookmark" href="#2nd">
+                    <div class="bookmark-block">
+                        ▶️ For a given customer, find...
+                    </div>
+                </a>
+
+                <a class="side-nav-bookmark" href="#3rd">
+                    <div class="bookmark-block">
+                        ▶️ Find agronomists that sold...
+                    </div>
+                </a>
+
+                <a class="side-nav-bookmark" href="#4th">
+                    <div class="bookmark-block">
+                        ▶️ >Find all customers that...
+                    </div>
+                </a>
+
+                <a class="side-nav-bookmark" href="#5th">
+                    <div class="bookmark-block">
+                        ▶️ For a given customer, find...
+                    </div>
+                </a>
+
+                <a class="side-nav-bookmark" href="#6th">
+                    <div class="bookmark-block">
+                        ▶️ A customer buys an agr...
+                    </div>
+                </a>
+
+                <a class="side-nav-bookmark" href="#7th">
+                    <div class="bookmark-block">
+                        ▶️ A customer returns a...
+                    </div>
+                </a>
+
+                <a class="side-nav-bookmark" href="#8th">
+                    <div class="bookmark-block">
+                        ▶️ Customer leaves a re...
+                    </div>
+                </a>
+
+            </nav>
+
+    </div>
+
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main-content">
+        <div>
+            <h1 style="font-size: 60px; margin-top: 30px"><span style="color: darkgreen;">Customer</span> Queries</h1>
+            <br />
+            <h3 style="font-size: 35px; border-bottom: 3px solid #88a582;">Look up the necessary data using the forms below!</h3><br /><br />
+            <h6 style="font-size: 25px; color: #0e610e;">If you are experiencing some difficulties, check out the information on the <strong>About</strong> page.<br />It might  be helpful!</h6>
+
+            <div class="div-line"></div>
+
+            <h4 id="1st" class="query-heading">Find all purchased products of a given customer in a given time period.</h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'customer_data1' ) }}';">Go!</button><br />
+
+            <div class="div-line"></div>
+
+            <h4 id="2nd" class="query-heading">For a given customer, find all agronomists that organized a degustation with him/her at least <span style="color: dodgerblue;">N</span> times in a given time period.</h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'customer_data2' ) }}';">Go!</button><br />
+
+            <div class="div-line"></div>
+
+            <h4 id="3rd" class="query-heading">Find agronomists that sold at least <strong>1</strong> product and organized at least <strong>1</strong> degustation for a given customer in a given period of time.</h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'customer_data3' ) }}';">Go!</button><br />
+
+            <div class="div-line"></div>
+            
+            <h4 id="4th" class="query-heading">Find all customers that bought at least <span style="color: dodgerblue;">N</span> different products in a given time period.</h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'customer_data4' ) }}';">Go!</button><br />
+
+            <div class="div-line"></div>
+
+            <h4 id="5th" class="query-heading">For a given customer, find the amount of reviews he/she left in a given period of time.</h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'customer_data5' ) }}';">Go!</button><br />
+
+            <div class="div-line"></div>
+
+            <h4 id="6th" class="query-heading">A customer buys an agronomist's product.</h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'customer_datae1' ) }}';">Go!</button><br />
+
+            <div class="div-line"></div>
+
+            <h4 id="7th" class="query-heading">A customer returns a product he bought in 14 days or less.</h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'customer_datae2' ) }}';">Go!</button><br />
+
+            <div class="div-line"></div>
+
+            <h4 id="8th" class="query-heading">Customer leaves a record in the <strong>"Complaints and Propositions"</strong> book.</h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'customer_datae3' ) }}';">Go!</button><br />
+
+            <div class="div-line"></div>
+
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-2 col-md-2 d-none d-md-block right-block">
+        <img src="../static/logo.png" width="100%" alt="HempLogo.png" style="margin-top: 20%;"><br /><br />
+        <a href="https://github.com/kostyantynHrytsyuk/hemp-heaven" class="side-link">Check out Hemp Haven on GitHub</a>
+    </div>
+</div>
 
 {% endblock content %}

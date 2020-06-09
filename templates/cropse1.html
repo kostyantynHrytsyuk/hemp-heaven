@@ -1,10 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'layout.html' %}
 
-</body>
-</html>
+{% block metadata %}
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='/css/index.css') }}">
+<link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='/css/query-forms.css') }}">
+{% endblock metadata %}
+
+
+
+{% block title %} Harvest and Product queries {% endblock title %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-2 col-md-2 d-none d-md-block side-nav">
+
+        <p class="nav-heading">Make a query!</p>
+
+    </div>
+
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main-content">
+        <div>
+            <h1 style="font-size: 60px; margin-top: 30px"><span style="color: darkgreen;">Harvest and Product</span> Queries</h1>
+            <br />
+            <h3 style="font-size: 35px; border-bottom: 3px solid #88a582;">Look up the necessary data using the forms below!</h3><br /><br />
+            <h6 style="font-size: 25px; color: #0e610e;">If you are experiencing some difficulties, check out the information on the <strong>About</strong> page.<br />It might  be helpful!</h6>
+
+            <h4 id="3rd" class="query-heading">An agronomist harvested crops of some sort of hemp.</h4>
+            <form class="form-inline" action="/cropse1" method="POST">
+
+                    <div class="form-group">
+                        {#<input type="text" class="form-control" id="times" placeholder="Group ID">#}
+                        {{ formE1.aid(class_="form-control", placeholder="Agronomist ID") }}
+                    </div>
+
+                    <div class="form-group">
+                        {#<input type="text" class="form-control" id="date2" placeholder="Start date">#}
+                     {{ formE1.hemp_sort_id(class_="form-control", placeholder="Hemp sort ID") }}
+                  </div>
+
+                 <div class="form-group">
+                        {#<input type="text" class="form-control" id="date2" placeholder="Start date">#}
+                     {{ formE1.fdate(class_="form-control", placeholder="Start date") }}
+                  </div>
+
+                <div class="form-group">
+                        {#<input type="text" class="form-control" id="date2" placeholder="End date">#}
+                    {{ formE1.sdate(class_="form-control", placeholder="End date") }}
+                  </div>
+
+                  {{ formE1.submit(class_="btn btn-success") }}
+            </form>
+
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-2 col-md-2 d-none d-md-block right-block">
+        <img src="../static/logo.png" width="100%" alt="HempLogo.png" style="margin-top: 20%;"><br /><br />
+        <a href="https://github.com/kostyantynHrytsyuk/hemp-heaven" class="side-link">Check out Hemp Haven on GitHub</a>
+    </div>
+</div>
+
+{% endblock content %}

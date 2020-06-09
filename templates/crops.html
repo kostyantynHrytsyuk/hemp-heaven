@@ -19,27 +19,22 @@
             <nav>
                 <a class="side-nav-bookmark" href="#1st">
                     <div class="bookmark-block">
-                        ▶️ Get all customers of an...
+                        ▶️ Get hemp sorts in descend...
                     </div>
                 </a>
 
                 <a class="side-nav-bookmark" href="#2nd">
                     <div class="bookmark-block">
-                        ▶️ Get all agronomists tha...
+                        ▶️ Get all products that wer...
                     </div>
                 </a>
 
                 <a class="side-nav-bookmark" href="#3rd">
                     <div class="bookmark-block">
-                        ▶️ For the chosen agronomi...
+                        ▶️ An agronomist harvested...
                     </div>
                 </a>
 
-                <a class="side-nav-bookmark" href="#1st">
-                    <div class="bookmark-block">
-                        ▶️ ...
-                    </div>
-                </a>
             </nav>
 
     </div>
@@ -51,28 +46,20 @@
             <h3 style="font-size: 35px; border-bottom: 3px solid #88a582;">Look up the necessary data using the forms below!</h3><br /><br />
             <h6 style="font-size: 25px; color: #0e610e;">If you are experiencing some difficulties, check out the information on the <strong>About</strong> page.<br />It might  be helpful!</h6>
 
+            <div class="div-line"></div>
 
-            <h4 id="1st" class="query-heading"></h4>
-            <form class="form-inline" action="/result">
-                  <div class="form-group">
-                        <input type="text" class="form-control" id="times" placeholder="Agr. ID">
-                  </div>
+            <h4 id="1st" class="query-heading">Get hemp sorts in descending order of average amount of business trips that agronomists who harvested this sort at least N times have gone to in a given time period.</h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'crops_data1' ) }}';">Go!</button><br />
 
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="times" placeholder="Cus. ID">
-                    </div>
+            <div class="div-line"></div>
 
-                  <div class="form-group">
-                        <input type="text" class="form-control" id="date1" placeholder="First date">
-                  </div>
+            <h4 id="2nd" class="query-heading">Get all products that were purchased at least by N different customers ordered (descending) by the percentage of returns in a given time period.</h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'crops_data2' ) }}';">Go!</button><br />
 
-                 <div class="form-group">
-                        <input type="text" class="form-control" id="date2" placeholder="Second date">
-                  </div>
+            <div class="div-line"></div>
 
-                  <button type="submit" class="btn btn-success">Submit Query</button>
-            </form>
-
+            <h4 id="3rd" class="query-heading">An agronomist harvested crops of some sort of hemp.</h4>
+            <button class="btn btn-danger" type="button" onclick="window.location.href='{{ url_for( 'crops_datae1' ) }}';">Go!</button><br />
 
             <div class="div-line"></div>
 

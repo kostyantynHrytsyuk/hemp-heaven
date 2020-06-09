@@ -7,26 +7,28 @@
 
 
 
-{% block title %} Success {% endblock title %}
+{% block title %} Error {% endblock title %}
 
 {% block content %}
 
 <div class="row">
     <div class="col-lg-2 col-md-2 d-none d-md-block side-nav">
 
-        <p class="nav-heading">Query completed!</p>
+        <p class="nav-heading">Query Error</p>
 
     </div>
 
     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main-content">
         <div>
-            <h1 style="font-size: 60px; margin-top: 30px"><span style="color: darkgreen;">Query</span> Success!</h1>
+            <h1 style="font-size: 60px; margin-top: 30px"><span style="color: #af0808;">Query  Error</span></h1>
             <br />
-            <h3 style="font-size: 35px; border-bottom: 3px solid #88a582;">Your query was successfully completed! The new data now is in the database!</h3><br /><br />
+            <h3 style="font-size: 35px; border-bottom: 3px solid #88a582;">Please re-do your query. The website experiences some kind of problem processing your query...</h3><br /><br />
             <h6 style="font-size: 25px; color: #0e610e;">If you are experiencing some difficulties, check out the information on the <strong>About</strong> page.<br />It might  be helpful!</h6>
 
-            <div style="margin-top: 50px; margin-bottom: 50px" class="alert alert-success" role="alert">
-                Query successfully completed! Thank you for using our web app!
+            <div style="margin-top: 50px; margin-bottom: 50px" class="alert alert-danger" role="alert">
+                <strong>Oops! :(</strong><br />
+                An error ocured while trying to execute your query... Check if you gave the system the correct parameters!<br />
+                If you are having some trouble using our website, please see the <strong>About</strong> page! There is some useful information that might help you out.
             </div>
 
 

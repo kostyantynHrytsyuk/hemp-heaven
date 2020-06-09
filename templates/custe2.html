@@ -7,7 +7,7 @@
 
 
 
-{% block title %} Agronomist queries {% endblock title %}
+{% block title %} Customer queries {% endblock title %}
 
 {% block content %}
 
@@ -20,31 +20,31 @@
 
     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main-content">
         <div>
-            <h1 style="font-size: 60px; margin-top: 30px"><span style="color: darkgreen;">Agronomist</span> Queries</h1>
+            <h1 style="font-size: 60px; margin-top: 30px"><span style="color: darkgreen;">Customer</span> Queries</h1>
             <br />
             <h3 style="font-size: 35px; border-bottom: 3px solid #88a582;">Look up the necessary data using the forms below!</h3><br /><br />
             <h6 style="font-size: 25px; color: #0e610e;">If you are experiencing some difficulties, check out the information on the <strong>About</strong> page.<br />It might  be helpful!</h6>
 
-            <h4 id="6th" class="query-heading">An agronomist organized a product tasting for a group of customers.</h4>
-            <form class="form-inline" action="/agronomiste1" method="POST">
 
-                    <div class="form-group">
-                        {#<input type="text" class="form-control" id="times" placeholder="Group ID">#}
-                        {{ formE1.tasting_group_id(class_="form-control", placeholder="Group ID") }}
-                    </div>
-
-                <div class="form-group">
-                        {#<input type="text" class="form-control" id="times" placeholder="Product ID">#}
-                    {{ formE1.product_id(class_="form-control", placeholder="Product ID") }}
-                </div>
-
-
+            <h4 id="7th" class="query-heading">A customer returns a product he bought in 14 days or less.</h4>
+            <form class="form-inline" action="/customere2" method="POST">
                  <div class="form-group">
-                        {#<input type="text" class="form-control" id="date2" placeholder="Date">#}
-                     {{ formE1.tasting_date(class_="form-control", placeholder="Date") }}
+                      {#<input type="text" class="form-control" id="times" placeholder="ID">#}
+                      {{ formE2.order_id(class_="form-control", placeholder="Order ID") }}
                   </div>
 
-                  {{ formE1.submit(class_="btn btn-success") }}
+                  <div class="form-group">
+                      {#<input type="text" class="form-control" id="date1" placeholder="First date">#}
+                      {{ formE2.status_id(class_="form-control", placeholder="Status ID") }}
+                  </div>
+
+                 <div class="form-group">
+                     {#<input type="text" class="form-control" id="date2" placeholder="Second date">#}
+                     {{ formE2.return_date(class_="form-control", placeholder="Return date") }}
+                  </div>
+
+                  {#<button type="submit" class="btn btn-success">Submit Query</button>#}
+                 {{ formE2.submit(class_="btn btn-success") }}
             </form>
 
         </div>

@@ -62,6 +62,16 @@ class SelectForm5(FlaskForm):
     def validate_on_submit(self):
         return self.submit.data and self.aid.data and self.cid.data and self.fdate.data and self.sdate.data
 
+class SelectForm6(FlaskForm):
+    cid = StringField('Customer ID', validators=[InputRequired()])
+    n = StringField('N', validators=[InputRequired()])
+    fdate = StringField('Start Date', validators=[InputRequired()])
+    sdate = StringField('End Date', validators=[InputRequired()])
+    submit = SubmitField('Submit Query')
+
+    def validate_on_submit(self):
+        return self.submit.data and self.cid.data and self.n.data and self.fdate.data and self.sdate.data
+
 
 ########################################################################################################################
 # Form classes for event queries
@@ -120,7 +130,7 @@ class EventForm5(FlaskForm):
 
 class EventForm6(FlaskForm):
     cid = StringField('Customer ID', validators=[InputRequired()])
-    return_date = StringField('Return Date', validators=[InputRequired()])
+    comp_date = StringField('Return Date', validators=[InputRequired()])
     text = StringField('Complaint/Proposition Text', validators=[InputRequired()])
     submit = SubmitField('Submit Query')
 
@@ -170,30 +180,36 @@ def agronomist_data():
 def agronomist_data1():
     global engine
     global result
+    try:
 
-    form1 = SelectForm1()
+        form1 = SelectForm1()
 
-    if form1.validate_on_submit():
-        print("here1")
-        result = Queries.make_select1(engine, form1.aid.data, form1.n.data, form1.fdate.data, form1.sdate.data)
-        return redirect(url_for("query_result"))
+        if form1.validate_on_submit():
+            # print("here1")
+            result = Queries.make_select1(engine, form1.aid.data, form1.n.data, form1.fdate.data, form1.sdate.data)
+            return redirect(url_for("query_result"))
 
-    return render_template("agro1.html", form1=form1)
+        return render_template("agro1.html", form1=form1)
+    except:
+        return render_template("error.html")
 
 
 @app.route('/agronomist2', methods=['GET', 'POST'])
 def agronomist_data2():
     global engine
     global result
+    try:
 
-    form2 = SelectForm4()
+        form2 = SelectForm4()
 
-    if form2.validate_on_submit():
-        print("here2")
-        result = Queries.make_select4(engine, form2.aid.data, form2.fdate.data, form2.sdate.data)
-        return redirect(url_for("query_result"))
+        if form2.validate_on_submit():
+            # print("here2")
+            result = Queries.make_select4(engine, form2.aid.data, form2.fdate.data, form2.sdate.data)
+            return redirect(url_for("query_result"))
 
-    return render_template("agro2.html", form2=form2)
+        return render_template("agro2.html", form2=form2)
+    except:
+        return render_template("error.html")
 
 
 
@@ -201,70 +217,85 @@ def agronomist_data2():
 def agronomist_data3():
     global engine
     global result
+    try:
 
-    form3 = SelectForm2()
+        form3 = SelectForm2()
 
-    if form3.validate_on_submit():
-        result = Queries.make_select7(engine, form3.n.data, form3.fdate.data, form3.sdate.data)
-        return redirect(url_for("query_result"))
+        if form3.validate_on_submit():
+            result = Queries.make_select7(engine, form3.n.data, form3.fdate.data, form3.sdate.data)
+            return redirect(url_for("query_result"))
 
-    return render_template("agro3.html", form3=form3)
+        return render_template("agro3.html", form3=form3)
+    except:
+        return render_template("error.html")
 
 
 @app.route('/agronomist4', methods=['GET', 'POST'])
 def agronomist_data4():
     global engine
     global result
+    try:
 
-    form4 = SelectForm5()
+        form4 = SelectForm5()
 
-    if form4.validate_on_submit():
-        result = Queries.make_select8(engine, form4.cid.data, form4.aid.data, form4.fdate.data, form4.sdate.data)
-        return redirect(url_for("query_result"))
+        if form4.validate_on_submit():
+            result = Queries.make_select8(engine, form4.cid.data, form4.aid.data, form4.fdate.data, form4.sdate.data)
+            return redirect(url_for("query_result"))
 
-    return render_template("agro4.html", form4=form4)
+        return render_template("agro4.html", form4=form4)
+    except:
+        return render_template("error.html")
 
 
 @app.route('/agronomist5', methods=['GET', 'POST'])
 def agronomist_data5():
     global engine
     global result
+    try:
 
-    form5 = SelectForm1()
+        form5 = SelectForm1()
 
-    if form5.validate_on_submit():
-        result = Queries.make_select9(engine, form5.aid.data, form5.n.data, form5.fdate.data, form5.sdate.data)
-        return redirect(url_for("query_result"))
+        if form5.validate_on_submit():
+            result = Queries.make_select9(engine, form5.aid.data, form5.n.data, form5.fdate.data, form5.sdate.data)
+            return redirect(url_for("query_result"))
 
-    return render_template("agro5.html", form5=form5)
+        return render_template("agro5.html", form5=form5)
+    except:
+        return render_template("error.html")
 
 
 @app.route('/agronomiste1', methods=['GET', 'POST'])
 def agronomist_datae1():
     global engine
     global result
+    try:
 
-    formE1 = EventForm2()
+        formE1 = EventForm2()
 
-    if formE1.validate_on_submit():
-        Queries.event_make_tasting(formE1.tasting_group_id.data, formE1.product_id.data, formE1.tasting_date.data)
-        return redirect(url_for("successful"))
+        if formE1.validate_on_submit():
+            Queries.event_make_tasting(engine, formE1.tasting_group_id.data, formE1.product_id.data, formE1.tasting_date.data)
+            return redirect(url_for("successful"))
 
-    return render_template("agroe1.html", formE1=formE1)
+        return render_template("agroe1.html", formE1=formE1)
+    except:
+        return render_template("error.html")
 
 
 @app.route('/agronomiste2', methods=['GET', 'POST'])
 def agronomist_datae2():
     global engine
     global result
+    try:
 
-    formE2 = EventForm5()
+        formE2 = EventForm5()
 
-    if formE2.validate_on_submit():
-        Queries.event_make_business_trips(formE2.bsns_trip_group_id.data, formE2.fdate.data, formE2.sdate.data)
-        return redirect(url_for("successful"))
+        if formE2.validate_on_submit():
+            Queries.event_make_business_trips(engine, formE2.bsns_trip_group_id.data, formE2.fdate.data, formE2.sdate.data)
+            return redirect(url_for("successful"))
 
-    return render_template("agroe2.html", formE2=formE2)
+        return render_template("agroe2.html", formE2=formE2)
+    except:
+        return render_template("error.html")
 
 
 # -------------------------------------------------------------------------------------------------------------------- #
@@ -280,72 +311,140 @@ def customer_data():
 def customer_data1():
     global engine
     global result
+    try:
 
-    form1 = SelectForm3()
-    return render_template("customer.html", form1=form1)
+        form1 = SelectForm3()
+        if form1.validate_on_submit():
+            result = Queries.make_select2(engine, form1.cid.data, form1.fdate.data, form1.sdate.data)
+            return redirect(url_for("query_result"))
+
+        return render_template("cust1.html", form1=form1)
+    except:
+        return render_template("error.html")
 
 
 @app.route('/customer2', methods=['GET', 'POST'])
 def customer_data2():
     global engine
     global result
+    try:
 
-    form2 = SelectForm1()
-    return render_template("customer.html", form2=form2)
+        form2 = SelectForm6()
+
+        if form2.validate_on_submit():
+            result = Queries.make_select3(engine, form2.cid.data, form2.n.data, form2.fdate.data, form2.sdate.data)
+            return redirect(url_for("query_result"))
+
+        return render_template("cust2.html", form2=form2)
+    except:
+        return render_template("error.html")
 
 
 @app.route('/customer3', methods=['GET', 'POST'])
 def customer_data3():
     global engine
     global result
+    try:
 
-    form3 = SelectForm3()
-    return render_template("customer.html", form3=form3)
+        form3 = SelectForm3()
+
+        if form3.validate_on_submit():
+            result = Queries.make_select5(engine, form3.cid.data, form3.fdate.data, form3.sdate.data)
+            return redirect(url_for("query_result"))
+
+        return render_template("cust3.html", form3=form3)
+    except:
+        return render_template("error.html")
 
 
 @app.route('/customer4', methods=['GET', 'POST'])
 def customer_data4():
     global engine
     global result
+    try:
 
-    form4 = SelectForm2()
-    return render_template("customer.html", form4=form4)
+        form4 = SelectForm2()
+
+        if form4.validate_on_submit():
+            result = Queries.make_select6(engine, form4.n.data, form4.fdate.data, form4.sdate.data)
+            return redirect(url_for("query_result"))
+
+        return render_template("cust4.html", form4=form4)
+    except:
+        return render_template("error.html")
 
 
 @app.route('/customer5', methods=['GET', 'POST'])
 def customer_data5():
     global engine
     global result
+    try:
 
-    form5 = SelectForm3()
-    return render_template("customer.html", form5=form5)
+        form5 = SelectForm3()
+
+        if form5.validate_on_submit():
+            result = Queries.make_select10(engine, form5.cid.data, form5.fdate.data, form5.sdate.data)
+            return redirect(url_for("query_result"))
+
+        return render_template("cust5.html", form5=form5)
+    except:
+        return render_template("error.html")
 
 
 @app.route('/customere1', methods=['GET', 'POST'])
 def customer_datae1():
     global engine
     global result
+    try:
 
-    formE1 = EventForm3()
-    return render_template("customer.html", formE1=formE1)
+        formE1 = EventForm3()
+
+        if formE1.validate_on_submit():
+
+            items = formE1.product_ids.data.split(",")
+            for i in range(len(items)):
+                items[i] = int(items[i].strip())
+
+            Queries.event_make_purchase(engine, formE1.cid.data, formE1.aid.data, formE1.order_date.data, items)
+            return redirect(url_for("successful"))
+
+        return render_template("custe1.html", formE1=formE1)
+    except:
+        return render_template("error.html")
 
 
 @app.route('/customere2', methods=['GET', 'POST'])
 def customer_datae2():
     global engine
     global result
+    try:
 
-    formE2 = EventForm4()
-    return render_template("customer.html", formE2=formE2)
+        formE2 = EventForm4()
+
+        if formE2.validate_on_submit():
+            Queries.event_return_ordered_items(engine, formE2.order_id.data, formE2.status_id.data, formE2.return_date.data)
+            return redirect(url_for("successful"))
+
+        return render_template("custe2.html", formE2=formE2)
+    except:
+        return render_template("error.html")
 
 
 @app.route('/customere3', methods=['GET', 'POST'])
 def customer_datae3():
     global engine
     global result
+    try:
 
-    formE3 = EventForm6()
-    return render_template("customer.html", formE3=formE3)
+        formE3 = EventForm6()
+
+        if formE3.validate_on_submit():
+            Queries.event_make_complain(engine, formE3.cid.data, formE3.text.data, formE3.comp_date.data)
+            return redirect(url_for("successful"))
+
+        return render_template("custe3.html", formE3=formE3)
+    except:
+        return render_template("error.html")
 
 
 # -------------------------------------------------------------------------------------------------------------------- #
@@ -362,27 +461,54 @@ def crops_data():
 def crops_data1():
     global engine
     global result
+    try:
 
-    form1 = SelectForm2()
-    return render_template("crops1.html", form1=form1)
+        form1 = SelectForm2()
+
+        # print(form1.validate_on_submit())
+
+        if form1.validate_on_submit():
+            # print("here now")
+            result = Queries.make_select11(engine, form1.n.data, form1.fdate.data, form1.sdate.data)
+            return redirect(url_for("query_result"))
+
+        return render_template("crops1.html", form1=form1)
+    except:
+        return render_template("error.html")
 
 
 @app.route('/crops2', methods=['GET', 'POST'])
 def crops_data2():
     global engine
     global result
+    try:
 
-    form2 = SelectForm2()
-    return render_template("crops2.html", form2=form2)
+        form2 = SelectForm2()
+
+        if form2.validate_on_submit():
+            result = Queries.make_select12(engine, form2.n.data, form2.fdate.data, form2.sdate.data)
+            return redirect(url_for("query_result"))
+
+        return render_template("crops2.html", form2=form2)
+    except:
+        return render_template("error.html")
 
 
 @app.route('/cropse1', methods=['GET', 'POST'])
 def crops_datae1():
     global engine
     global result
+    try:
 
-    formE1 = EventForm1()
-    return render_template("cropse1.html", formE1=formE1)
+        formE1 = EventForm1()
+
+        if formE1.validate_on_submit():
+            Queries.event_make_harvest(engine, formE1.aid.data, formE1.hemp_sort_id.data, formE1.fdate.data, formE1.sdate.data)
+            return redirect(url_for("successful"))
+
+        return render_template("cropse1.html", formE1=formE1)
+    except:
+        return render_template("error.html")
 
 
 

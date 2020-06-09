@@ -142,7 +142,8 @@ class EventForm6(FlaskForm):
 # The app and its necessary variables
 
 app = Flask(__name__)
-engine = Queries.create_engn('postgres', 'student', 'localhost', 'kannabis')
+#engine = Queries.create_engn('postgres', 'student', 'localhost', 'kannabis')
+engine = Queries.create_engn('team9', 'passwor9d', '142.93.163.88:6006', 'db9')
 result = None
 app.config['SECRET_KEY'] = 'My name is Yoshikage Kira. I\'m 33 years old. My house is in the northeast section of ' \
                            'Morioh, where all the villas are, and I am not married. I work as an employee for the ' \
@@ -190,8 +191,8 @@ def agronomist_data1():
             return redirect(url_for("query_result"))
 
         return render_template("agro1.html", form1=form1)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 @app.route('/agronomist2', methods=['GET', 'POST'])
@@ -208,8 +209,8 @@ def agronomist_data2():
             return redirect(url_for("query_result"))
 
         return render_template("agro2.html", form2=form2)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 
@@ -226,8 +227,8 @@ def agronomist_data3():
             return redirect(url_for("query_result"))
 
         return render_template("agro3.html", form3=form3)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 @app.route('/agronomist4', methods=['GET', 'POST'])
@@ -243,8 +244,8 @@ def agronomist_data4():
             return redirect(url_for("query_result"))
 
         return render_template("agro4.html", form4=form4)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 @app.route('/agronomist5', methods=['GET', 'POST'])
@@ -260,8 +261,8 @@ def agronomist_data5():
             return redirect(url_for("query_result"))
 
         return render_template("agro5.html", form5=form5)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 @app.route('/agronomiste1', methods=['GET', 'POST'])
@@ -277,8 +278,8 @@ def agronomist_datae1():
             return redirect(url_for("successful"))
 
         return render_template("agroe1.html", formE1=formE1)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 @app.route('/agronomiste2', methods=['GET', 'POST'])
@@ -294,8 +295,8 @@ def agronomist_datae2():
             return redirect(url_for("successful"))
 
         return render_template("agroe2.html", formE2=formE2)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 # -------------------------------------------------------------------------------------------------------------------- #
@@ -319,8 +320,8 @@ def customer_data1():
             return redirect(url_for("query_result"))
 
         return render_template("cust1.html", form1=form1)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 @app.route('/customer2', methods=['GET', 'POST'])
@@ -336,8 +337,8 @@ def customer_data2():
             return redirect(url_for("query_result"))
 
         return render_template("cust2.html", form2=form2)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 @app.route('/customer3', methods=['GET', 'POST'])
@@ -353,8 +354,8 @@ def customer_data3():
             return redirect(url_for("query_result"))
 
         return render_template("cust3.html", form3=form3)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 @app.route('/customer4', methods=['GET', 'POST'])
@@ -370,8 +371,8 @@ def customer_data4():
             return redirect(url_for("query_result"))
 
         return render_template("cust4.html", form4=form4)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 @app.route('/customer5', methods=['GET', 'POST'])
@@ -387,8 +388,8 @@ def customer_data5():
             return redirect(url_for("query_result"))
 
         return render_template("cust5.html", form5=form5)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 @app.route('/customere1', methods=['GET', 'POST'])
@@ -409,8 +410,8 @@ def customer_datae1():
             return redirect(url_for("successful"))
 
         return render_template("custe1.html", formE1=formE1)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 @app.route('/customere2', methods=['GET', 'POST'])
@@ -426,8 +427,8 @@ def customer_datae2():
             return redirect(url_for("successful"))
 
         return render_template("custe2.html", formE2=formE2)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 @app.route('/customere3', methods=['GET', 'POST'])
@@ -443,8 +444,8 @@ def customer_datae3():
             return redirect(url_for("successful"))
 
         return render_template("custe3.html", formE3=formE3)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 # -------------------------------------------------------------------------------------------------------------------- #
@@ -473,8 +474,8 @@ def crops_data1():
             return redirect(url_for("query_result"))
 
         return render_template("crops1.html", form1=form1)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 @app.route('/crops2', methods=['GET', 'POST'])
@@ -490,8 +491,8 @@ def crops_data2():
             return redirect(url_for("query_result"))
 
         return render_template("crops2.html", form2=form2)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 @app.route('/cropse1', methods=['GET', 'POST'])
@@ -507,8 +508,8 @@ def crops_datae1():
             return redirect(url_for("successful"))
 
         return render_template("cropse1.html", formE1=formE1)
-    except:
-        return render_template("error.html")
+    except Exception as err:
+        return render_template("error.html", error=str(err))
 
 
 
